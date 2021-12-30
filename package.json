@@ -1,0 +1,24 @@
+{
+  "name": "Medium.com-Scrapper",
+  "version": "1.0.0",
+  "description": "**Medium.com Scrapper**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivammahajancse/Medium.com-Scrapper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivammahajancse/Medium.com-Scrapper/issues"
+  },
+  "homepage": "https://github.com/shivammahajancse/Medium.com-Scrapper#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "request": "^2.88.2"
+  }
+}

@@ -1,7 +1,7 @@
 const express = require('express');
 const req = require('express/lib/request');
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
 const path = require('path');
 const db = require('./model/database.js');
 const mod = require(path.join(__dirname, 'controller', 'script.js'));
@@ -32,9 +32,7 @@ app.post('/api',(req,res)=>{
 });
 
 
-app.get('/about', (req, res) => {
-  res.send('about')
-})
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+// app.get('/about', (req, res) => {
+//   res.send('about')
+// })
+app.listen(port);

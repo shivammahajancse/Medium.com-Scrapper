@@ -2,7 +2,10 @@ const request = require('request');
 const cheerio = require('cheerio');
 
 var tag;
-
+function search(t)
+{
+    tag=t
+}
 const url = `https://medium.com/tag/${tag}/latest`;
 request(url,cb);
 function cb(err, response, html){

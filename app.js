@@ -26,7 +26,7 @@ app.get('/gethistory',(req,res)=>{
 })
 
 app.post('/api',(req,res)=>{
-  mod.onsearch(req.body.tagname);
+  mod.search(req.body.tagname);
   db.insertsqlquery(req.body.tagname);
   res.sendStatus(200);
 });

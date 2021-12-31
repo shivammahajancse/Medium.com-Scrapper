@@ -4,9 +4,13 @@ const cheerio = require('cheerio');
 var tag;
 function search(t)
 {
-    tag=t
+    tag=t;
+    scrap();
 }
-const url = `https://medium.com/tag/${tag}/latest`;
+
+function scrap()
+{
+    const url = `https://medium.com/tag/${tag}/latest`;
 request(url,cb);
 function cb(err, response, html){
     if(err){
@@ -16,17 +20,29 @@ function cb(err, response, html){
         extractHtml(html);
     }
 }
+let elearrwriter = [];
+let elearrhead = [];
+let elearrdesc = [];
+let relatedtopics = [];
+let date = [];
+let time = [];
+let link = [];
+let elearrwriter2 = [];
+let elearrhead2 = [];
+let elearrdesc2 = [];
+let relatedtopics2 = [];
+let date2 = [];
+let link2 = [];
 
 function extractHtml(html){
-    let $ = cheerio.load(html);
-    let elearrwriter = $('.ae.fu h4');
-    let elearrhead = $('.ae.fu h2');
-    let elearrdesc = $('.ae.fu h3');
-    let relatedtopics = $('.eq.db.er.l div');
-    let date = $('.ae.t>p').text();
-    let time = [];
-    let link = $('.ae.fu .el.l a');
-    let elenewwrite=[];
+    $ = cheerio.load(html);
+    elearrhead = $('.ae.fu h2');
+    elearrdesc = $('.ae.fu h3');
+    elearrwriter = $('.ae.fu h4');
+    relatedtopics = $('.eq.db.er.l div');
+    date = $('.ae.t>p');
+    link = $('.ae.fu .el.l a');
+    elearrwriter2=[];
 
     for(let i=0;i<elearrwriter.length;i++)
     {
@@ -37,8 +53,16 @@ function extractHtml(html){
             i++;
         }
         else{
-            elenewwrite.push(elearrwriter[i]);
+            elearrwriter2.push($(elearrwriter[i]).text());
         }
+    }
+    for(let j=0;j<10;j++)
+    {
+        elearrhead2.push($(elearrhead[j]).text());
+        elearrdesc2.push($(elearrdesc[j]).text());
+        relatedtopics2.push($(relatedtopics[j]).text());
+        date2.push($(date[j]).text());
+        link2.push($(link[j]).attr('href'));
     }
 
     $('span').each((i,el)=>{
@@ -46,11 +70,11 @@ function extractHtml(html){
 
         if($(el).attr().class!=undefined && $(el).attr().class.length==13 && temp.length>1)time.push(temp);  
     });
-    for(let k=0;k<10;k++)
-    {
+    // for(let k=0;k<10;k++)
+    // {
         
-        console.log(date[k]);
-    }
+    //     console.log(link2[k]);
+    // }
     // for(let i=0;i<10;i++)
     // {
     //     let text1 = $(elearrwriter[i]).text();
@@ -61,20 +85,24 @@ function extractHtml(html){
     //     console.log(text3);
     //     console.log('');
     // }
+}
+
 
     function getjson()
     {
         let object={
-            "writer":elenewwrite,
-            "head": elearrhead,
-            "desc": elearrdesc,
-            "topics": relatedtopics,
-            "date": date,
+            "writer":elearrwriter2,
+            "head": elearrhead2,
+            "desc": elearrdesc2,
+            "topics": relatedtopics2,
+            "date": date2,
             "time": time,
-            "link": link
+            "link": link2
         };
-        console.log(object);
+        // console.log(object);
         return object;
     } 
 }
-module.exports = {search,getjson};
+module.exports = {search, getjson};
+
+// search('node');

@@ -306,9 +306,9 @@ async function postreq(tag)
 
       if(obj.link.length>0 && obj.link[j][0]=='/')
       {
-        document.getElementsByClassName('xyz')[0].href=`https://medium.com${obj.link[j]}`;
+        document.getElementsByClassName('xyz')[j].href=`https://medium.com${obj.link[j]}`;
       }
-      else document.getElementsByClassName('xyz')[0].href=obj.link[j];
+      else document.getElementsByClassName('xyz')[j].href=obj.link[j];
 
     } 
 }

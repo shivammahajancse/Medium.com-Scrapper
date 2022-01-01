@@ -1,13 +1,13 @@
 const express = require('express');
 // const req = require('express/lib/request');
 const app = express();
-const port = 3000;
 const path = require('path');
 const bodyParser = require('body-parser');
 let di = __dirname;
 const db = require(path.join(__dirname,'model','database.js'));
 const mod = require(path.join(__dirname,'controller','script.js'));
 app.use(bodyParser.urlencoded({extended:false}));
+const port=process.env.PORT || 3000;
 
 
 app.get('/', (req, res) => {

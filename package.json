@@ -4,7 +4,7 @@
   "description": "**Medium.com Scrapper**",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -20,10 +20,9 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
     "express": "^4.17.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15",
     "request": "^2.88.2"
   },
-  "devDependencies": {},
-  "scripts": {
-    "start": "node app.js"
-  }
+  "devDependencies": {}
 }

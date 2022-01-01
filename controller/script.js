@@ -1,10 +1,38 @@
 const request = require('request');
 const cheerio = require('cheerio');
 
+let elearrwriter = [];
+let elearrhead = [];
+let elearrdesc = [];
+let relatedtopics = [];
+let date = [];
+let time = [];
+let link = [];
+let elearrwriter2 = [];
+let elearrhead2 = [];
+let elearrdesc2 = [];
+let relatedtopics2 = [];
+let date2 = [];
+let link2 = [];
 var tag;
 function search(t)
 {
+
     tag=t;
+    elearrwriter.length=0;
+    elearrhead.length=0;
+    elearrdesc.length=0;
+    relatedtopics2.length=0;
+    date.length=0;
+    time.length=0;
+    link.length=0;
+    elearrwriter2.length=0;
+    elearrhead2.length=0;
+    elearrdesc2.length=0;
+    relatedtopics2.length=0;
+    date2.length=0;
+    link2.length=0;
+    if(tag.length===0)return;
     scrap();
 }
 
@@ -20,21 +48,24 @@ function cb(err, response, html){
         extractHtml(html);
     }
 }
-let elearrwriter = [];
-let elearrhead = [];
-let elearrdesc = [];
-let relatedtopics = [];
-let date = [];
-let time = [];
-let link = [];
-let elearrwriter2 = [];
-let elearrhead2 = [];
-let elearrdesc2 = [];
-let relatedtopics2 = [];
-let date2 = [];
-let link2 = [];
 
-function extractHtml(html){
+}
+
+function extractHtml(html)
+{
+    elearrwriter.length=0;
+    elearrhead.length=0;
+    elearrdesc.length=0;
+    relatedtopics2.length=0;
+    date.length=0;
+    time.length=0;
+    link.length=0;
+    elearrwriter2.length=0;
+    elearrhead2.length=0;
+    elearrdesc2.length=0;
+    relatedtopics2.length=0;
+    date2.length=0;
+    link2.length=0;
     $ = cheerio.load(html);
     elearrhead = $('.ae.fu h2');
     elearrdesc = $('.ae.fu h3');
@@ -43,6 +74,7 @@ function extractHtml(html){
     date = $('.ae.t>p');
     link = $('.ae.fu .el.l a');
     elearrwriter2=[];
+
 
     for(let i=0;i<elearrwriter.length;i++)
     {
@@ -70,22 +102,9 @@ function extractHtml(html){
 
         if($(el).attr().class!=undefined && $(el).attr().class.length==13 && temp.length>1)time.push(temp);  
     });
-    // for(let k=0;k<10;k++)
-    // {
-        
-    //     console.log(link2[k]);
-    // }
-    // for(let i=0;i<10;i++)
-    // {
-    //     let text1 = $(elearrwriter[i]).text();
-    //     let text2 = $(elearrhead[i]).text();
-    //     let text3 = $(elearrdesc[i]).text();
-    //     console.log(text1);
-    //     console.log(text2);
-    //     console.log(text3);
-    //     console.log('');
-    // }
+
 }
+
 
 
     function getjson()
@@ -102,7 +121,5 @@ function extractHtml(html){
         // console.log(object);
         return object;
     } 
-}
-module.exports = {search, getjson};
 
-// search('node');
+module.exports = {search, getjson};

@@ -5,14 +5,14 @@ const port = 3000;
 const path = require('path');
 const bodyParser = require('body-parser');
 let di = __dirname;
-const db = require(`${di}/model/database.js`);
-const mod = require(`${di}/controller/script.js`);
+const db = require(path.join(__dirname,'model','database.js'));
+const mod = require(path.join(__dirname,'controller','script.js'));
 app.use(bodyParser.urlencoded({extended:false}));
 
 
 app.get('/', (req, res) => {
   
-  res.sendFile(`${di}/view/index.html`);
+  res.sendFile(path.join(__dirname,'view','index.html'));
 });
 
 app.get('/api2',(req,res)=>{
@@ -23,7 +23,7 @@ console.log(array);
 
 app.get('/history',(req,res)=>{
   db.performsqlquery();
-  res.sendFile(`${di}/view/history.html`);
+  res.sendFile(path.join(__dirname,'view','history.html'));
 });
 
 app.get('/gethistory',(req,res)=>{

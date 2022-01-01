@@ -2,7 +2,7 @@
   "name": "Medium.com-Scrapper",
   "version": "1.0.0",
   "description": "**Medium.com Scrapper**",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/shivammahajancse/Medium.com-Scrapper#readme",
   "dependencies": {
+    "body-parser": "^1.19.1",
     "cheerio": "^1.0.0-rc.10",
     "express": "^4.17.2",
     "mysql": "^2.18.1",

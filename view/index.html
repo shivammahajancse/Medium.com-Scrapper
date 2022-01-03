@@ -245,15 +245,15 @@
          }
          });     
          
-         // if(obj.head.length==0){
-         //   document.getElementById("component").innerHTML="";
-         //   var global=document.getElementById("tags");
-         //   var a1 = document.createElement("h4");
-         //   a1.classList.add("head");
-         //   a1.innerText="Page not Found";
-         //   global.appendChild(a1);
-         //   return;
-         // }
+         if(obj.head.length==0){
+           document.getElementById("component").innerHTML="";
+           var global=document.getElementById("tags");
+           var a1 = document.createElement("h4");
+           a1.classList.add("head");
+           a1.innerText="Page not Found";
+           global.appendChild(a1);
+           return;
+         }
          
          var global=document.getElementById("tags");
          var a1 = document.createElement("h4");

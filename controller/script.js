@@ -1,19 +1,19 @@
 const request = require('request');
 const cheerio = require('cheerio');
 
-let elearrwriter = [];
-let elearrhead = [];
-let elearrdesc = [];
-let relatedtopics = [];
-let date = [];
-let time = [];
-let link = [];
-let elearrwriter2 = [];
-let elearrhead2 = [];
-let elearrdesc2 = [];
-let relatedtopics2 = [];
-let date2 = [];
-let link2 = [];
+var elearrwriter = [];
+var elearrhead = [];
+var elearrdesc = [];
+var relatedtopics = [];
+var date = [];
+var time = [];
+var link = [];
+var elearrwriter2 = [];
+var head = [];
+var elearrdesc2 = [];
+var relatedtopics2 = [];
+var date2 = [];
+var link2 = [];
 var tag;
 
 function search(t) {
@@ -27,7 +27,7 @@ function search(t) {
     time.length = 0;
     link.length = 0;
     elearrwriter2.length = 0;
-    elearrhead2.length = 0;
+    head.length = 0;
     elearrdesc2.length = 0;
     relatedtopics2.length = 0;
     date2.length = 0;
@@ -59,7 +59,7 @@ function extractHtml(html) {
     time.length = 0;
     link.length = 0;
     elearrwriter2.length = 0;
-    elearrhead2.length = 0;
+    head.length = 0;
     elearrdesc2.length = 0;
     relatedtopics2.length = 0;
     date2.length = 0;
@@ -70,7 +70,7 @@ function extractHtml(html) {
     elearrwriter = $('.ae h4');
     relatedtopics = $('.eq.db.er.l div');
     date = $('.ae.t>p');
-    link = $('.ae.fu .el.l a');
+    link = $('.ae .el.l a');
     elearrwriter2 = [];
 
 
@@ -84,11 +84,19 @@ function extractHtml(html) {
         }
     }
     for (let j = 0; j < 10; j++) {
-        elearrhead2.push($(elearrhead[j]).text());
-        elearrdesc2.push($(elearrdesc[j]).text());
-        relatedtopics2.push($(relatedtopics[j]).text());
-        date2.push($(date[j]).text());
-        link2.push($(link[j]).attr('href'));
+        if ($(elearrhead[j]).text() != '') {
+            head.push($(elearrhead[j]).text());
+        }
+        if ($(elearrdesc[j]).text() != '') {
+            elearrdesc2.push($(elearrdesc[j]).text());
+        }
+        if ($(date[j]).text() != '') {
+            // relatedtopics2.push($(relatedtopics[j]).text());
+            date2.push($(date[j]).text());
+            console.log(date2[j]);
+        }
+
+
     }
 
     $('span').each((i, el) => {
@@ -96,16 +104,21 @@ function extractHtml(html) {
 
         if ($(el).attr().class != undefined && $(el).attr().class.length == 13 && temp.length > 1) time.push(temp);
     });
-        $('a').each((i,el)=>{
-        if($(el).attr().class!=undefined && $(el).attr().class.length==2 && $(el).children().length==1 && relatedtopics2.includes($(el).text())==false){relatedtopics2.push($(el).text());}
-    });
-        $('a').each((i,el)=>{
-               
-        if($(el).attr().class!=undefined && $(el).attr().class.length==44 && $(el).children().length==1 && $(el).children().children().length==2)
-        {
+    $('a').each((i, el) => {
+
+        if ($(el).attr().class != undefined && $(el).attr().class.length == 44 && $(el).children().length == 1 && $(el).children().children().length == 2) {
             link2.push($(el).attr('href'));
+            // console.log($(el).children().length);
         }
     });
+    $('a').each((i, el) => {
+        if ($(el).attr().class != undefined && $(el).attr().class.length == 2 && $(el).children().length == 1 && relatedtopics2.includes($(el).text()) == false) {
+            relatedtopics2.push($(el).text());
+        }
+    });
+    for (let i = 0; i < head.length; i++) {
+        console.log(head[i]);
+    }
 
 }
 
@@ -114,7 +127,7 @@ function extractHtml(html) {
 function getjson() {
     let object = {
         "writer": elearrwriter2,
-        "head": elearrhead2,
+        "head": head,
         "desc": elearrdesc2,
         "topics": relatedtopics2,
         "date": date2,

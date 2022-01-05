@@ -65,9 +65,9 @@ function extractHtml(html) {
     date2.length = 0;
     link2.length = 0;
     $ = cheerio.load(html);
-    elearrhead = $('.ae.fu h2');
-    elearrdesc = $('.ae.fu h3');
-    elearrwriter = $('.ae.fu h4');
+    elearrhead = $('.ae h2');
+    elearrdesc = $('.ae h3');
+    elearrwriter = $('.ae h4');
     relatedtopics = $('.eq.db.er.l div');
     date = $('.ae.t>p');
     link = $('.ae.fu .el.l a');

@@ -96,6 +96,16 @@ function extractHtml(html) {
 
         if ($(el).attr().class != undefined && $(el).attr().class.length == 13 && temp.length > 1) time.push(temp);
     });
+        $('a').each((i,el)=>{
+        if($(el).attr().class!=undefined && $(el).attr().class.length==2 && $(el).children().length==1 && relatedtopics2.includes($(el).text())==false){relatedtopics2.push($(el).text());}
+    });
+        $('a').each((i,el)=>{
+               
+        if($(el).attr().class!=undefined && $(el).attr().class.length==44 && $(el).children().length==1 && $(el).children().children().length==2)
+        {
+            link2.push($(el).attr('href'));
+        }
+    });
 
 }
 
